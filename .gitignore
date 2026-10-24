@@ -15,6 +15,7 @@ coverage/
 
 # Personal exports and screenshots
 *.png
+!icons/*.png
 *.jpg
 *.jpeg
 *.webp

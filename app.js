@@ -3,11 +3,8 @@
   const KEY = 'monthly-activity-maker-v1';
   const row = (name, actual = '', target = '', unit = '', type = 'number', checked = false) => ({ name, actual, target, unit, type, checked });
   const currentYear = new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'Asia/Tokyo' }).format(new Date());
-  const initial = { year: currentYear, month: '11月', mode: 'report', sections: [
-    { title: '仕事', items: [row('Skeb', '10', '14', '件')] },
-    { title: '勉強', items: [row('Coloso.', '20', '20', '授業'), row('AI美大', '20', '20', '課題')] },
-    { title: '趣味', items: [row('落書き', '25', '20', '枚'), row('上風学園 本編', '', '', '第4話 プロット', 'check'), row('スリムトゥーンの描き方', '', '', '服', 'check'), row('漢字しりとり絵', '', '', '辞書確認中絵', 'check'), row('Vtuber', '', '', 'リボンの描き方２', 'check'), row('魔境アパート トレーラー', '1', '2', 'カット')] }
-  ] };
+  const currentMonth = new Intl.DateTimeFormat('en', { month: 'numeric', timeZone: 'Asia/Tokyo' }).format(new Date());
+  const initial = { year: currentYear, month: `${currentMonth}月`, mode: 'goal', sections: [] };
   const valid = x => x && typeof x.month === 'string' && ['goal', 'report'].includes(x.mode) && Array.isArray(x.sections) && x.sections.length <= 50 && x.month.length <= 24 && x.sections.every(s => s && typeof s.title === 'string' && s.title.length <= 60 && Array.isArray(s.items) && s.items.length <= 100 && s.items.every(i => i && ['number', 'check'].includes(i.type) && ['name', 'actual', 'target', 'unit'].every(k => typeof i[k] === 'string' && i[k].length <= 120) && typeof i.checked === 'boolean'));
   let state = structuredClone(initial);
   const validYear = data => data.year === undefined || (typeof data.year === 'string' && /^(?:[1-9]\d{0,3})?$/.test(data.year));
