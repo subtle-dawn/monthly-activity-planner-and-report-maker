@@ -260,10 +260,7 @@
           if (state.mode === 'report') {
             text([item.checked ? '✓' : '—'], x + 486, rowY, 19, 600, item.checked ? colors.green : '#d33c3c', 'center');
           }
-          text(columns[3], x + (state.mode === 'goal' ? 450 : 510), rowY);
-        } else if (state.mode === 'goal') {
-          text(columns[2], x + 486, rowY, 16, 400, colors.text, 'center');
-          text(columns[3], x + 540, rowY);
+          text(columns[3], x + 510, rowY);
         } else {
           text(columns[1], x + 486, rowY, 16, 400, isBelowTarget(item) ? '#d33c3c' : colors.text, 'center');
           text(['／'], x + 530, rowY, 16, 400, colors.muted);
