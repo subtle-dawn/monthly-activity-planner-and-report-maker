@@ -309,11 +309,18 @@ input:focus, select:focus {
   margin: 0;
   font-size: 20px;
   font-weight: 600;
-  margin-right: 10px;
 }
 
 .header-fields #year {
   width: 100px;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.header-fields #mode {
+  width: 88px;
+  margin: 0;
+  flex-shrink: 0;
   font-size: inherit;
   font-weight: inherit;
 }
@@ -387,6 +394,7 @@ input:focus, select:focus {
   .header-fields #year {
     width: 54px;
     padding: 9px 2px;
+    margin-right: 0;
     appearance: textfield;
     -moz-appearance: textfield;
   }
@@ -399,6 +407,11 @@ input:focus, select:focus {
 
   .year-suffix {
     margin-right: 4px;
+  }
+
+  .header-fields #mode {
+    width: 62px;
+    padding: 9px 2px;
   }
 
   .row-labels, .activity-row {
@@ -486,6 +499,25 @@ input:focus, select:focus {
 
   .header-fields {
     font-size: 14px;
+  }
+
+  .header-fields #year {
+    width: 50px;
+  }
+
+  .header-fields #month {
+    width: 40px;
+    padding-right: 0;
+    padding-left: 2px;
+    font-size: 14px;
+  }
+
+  .header-fields #mode {
+    width: 58px;
+  }
+
+  .year-suffix {
+    margin-right: 2px;
   }
 
   .header-actions,

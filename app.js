@@ -21,14 +21,7 @@
       line.classList.toggle('below-target', isBelowTarget(line.activityItem));
     });
   }
-  function updateMode() {
-    state.mode = state.sections.some(section => section.items.some(item =>
-      item.type === 'check' ? item.checked : item.actual.trim() !== ''
-    )) ? 'report' : 'goal';
-    $('mode-label').textContent = state.mode === 'report' ? '報告' : '目標';
-  }
   function save() {
-    updateMode();
     updateActualColors();
     try { localStorage.setItem(KEY, JSON.stringify(state)); $('message').textContent = ''; }
     catch { $('message').textContent = '自動保存できません。データを書き出してください'; }
@@ -123,7 +116,7 @@
     return handle;
   }
   function render() {
-    updateMode();
+    $('mode').value = state.mode;
     $('year').value = state.year;
     $('month').replaceChildren();
     const months = Array.from({ length: 12 }, (_, i) => `${i + 1}月`);
@@ -262,7 +255,9 @@
           }
           text(columns[3], x + 510, rowY);
         } else {
-          text(columns[1], x + 486, rowY, 16, 400, isBelowTarget(item) ? '#d33c3c' : colors.text, 'center');
+          if (state.mode === 'report') {
+            text(columns[1], x + 486, rowY, 16, 400, isBelowTarget(item) ? '#d33c3c' : colors.text, 'center');
+          }
           text(['／'], x + 530, rowY, 16, 400, colors.muted);
           text(columns[2], x + 596, rowY, 16, 400, colors.text, 'center');
           text(columns[3], x + 650, rowY);
@@ -286,6 +281,7 @@
     return canvas;
   }
   $('month').addEventListener('change', e => { state.month = e.target.value; save(); });
+  $('mode').addEventListener('change', e => { state.mode = e.target.value; save(); });
   $('year').addEventListener('input', e => {
     if (!e.target.validity.valid) return;
     state.year = e.target.value; save();

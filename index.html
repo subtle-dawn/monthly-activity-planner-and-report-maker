@@ -17,7 +17,11 @@
   <header class="topbar">
     <div class="header-fields">
       <input id="year" type="number" min="1" max="9999" step="1" inputmode="numeric" aria-label="年"><span class="year-suffix">年</span>
-      <select id="month" aria-label="月"></select><span>月活動</span><span id="mode-label">目標</span>
+      <select id="month" aria-label="月"></select><span>月活動</span>
+      <select id="mode" aria-label="目標／報告">
+        <option value="goal">目標</option>
+        <option value="report">報告</option>
+      </select>
     </div>
     <div class="header-actions">
       <div class="data-actions">
